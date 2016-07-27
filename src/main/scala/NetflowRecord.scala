@@ -1,9 +1,8 @@
 import java.net.InetAddress
 import java.nio.ByteBuffer
 
-case class NetflowRecord(bytes: Seq[Byte]){
+case class NetflowRecord(data: BinaryData){
   def toFlow: Flow = {
-    val data = BinaryData(bytes)
 
     val srcaddr = InetAddress.getByAddress(data.extractBytes(0, 4)).getHostAddress
     val dstaddr = InetAddress.getByAddress(data.extractBytes(4, 4)).getHostAddress

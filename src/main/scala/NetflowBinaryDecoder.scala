@@ -16,13 +16,10 @@ object NetflowBinaryDecoder {
     val headerBytes = new Array[Byte](headerLength)
     while (maxChunks.forall(packets.length < _) && in.read(headerBytes) == headerLength) {
       val header = new NetflowHeader(headerBytes.clone())
+      val records = BinaryChunks(in, flowSize, header.packetLength)
+        .chunks.map(new NetflowRecord(_))
 
-      val records = mutable.Buffer[NetflowRecord]()
-      val buf = new Array[Byte](flowSize)
-      while (records.length < header.packetLength && in.read(buf) == flowSize)
-        records += new NetflowRecord(buf.clone())
-
-      packets += new NetflowPacket(header, records.toSeq)
+      packets += new NetflowPacket(header, records)
     }
     packets
   }
