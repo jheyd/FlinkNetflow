@@ -1,3 +1,3 @@
 import java.net.InetAddress
 
-case class Flow(dstIp: String)
+case class Flow(srcIp: String, dstIp: String)
