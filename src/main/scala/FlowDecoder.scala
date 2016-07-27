@@ -1,8 +1,6 @@
 import java.net.InetAddress
 import java.nio.ByteBuffer
 
-import org.codehaus.jackson.util.BufferRecycler.ByteBufferType
-
 object FlowDecoder {
   def decode(record: NetflowRecord): Flow = {
     val srcaddr = InetAddress.getByAddress(record.bytes.slice(0, 4).toArray).getHostAddress
