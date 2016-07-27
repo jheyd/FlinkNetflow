@@ -1,0 +1,36 @@
+import java.io.File
+
+import org.apache.flink.api.common.typeinfo.TypeInformation
+import org.apache.flink.api.scala.ExecutionEnvironment
+
+object FlinkNetflow {
+
+  val env = ExecutionEnvironment.getExecutionEnvironment
+
+  implicit val typeInfo = TypeInformation.of(classOf[Array[Byte]])
+  implicit val typeInfo2 = TypeInformation.of(classOf[Flow])
+  implicit val typeInfo3 = TypeInformation.of(classOf[List[Byte]])
+  implicit val typeInfo4 = TypeInformation.of(classOf[NetflowPacket])
+  implicit val typeInfo5 = TypeInformation.of(classOf[NetflowHeader])
+  implicit val typeInfo6 = TypeInformation.of(classOf[NetflowRecord])
+  implicit val typeInfo7 = TypeInformation.of(classOf[Int])
+  implicit val typeInfo8 = TypeInformation.of(classOf[(Flow, Int)])
+  implicit val typeInfo9 = TypeInformation.of(classOf[String])
+  implicit val typeInfo10 = TypeInformation.of(classOf[(String, Int)])
+
+  def main(args: Array[String]) {
+    val inputFile = new File(args(0))
+    val numberOfFlowsToRead = args(1).toInt
+
+    val packets = NetflowBinaryDecoder.load(inputFile, numberOfFlowsToRead)
+    val result = env.fromCollection(packets)
+      .flatMap(_.records)
+      .map(FlowDecoder.decode(_))
+      .map(_.dstIp)
+      .map((_, 1))
+      .groupBy(_._1)
+      .reduce((left, right) => (left._1, left._2 + right._2))
+    result.print()
+  }
+
+}
