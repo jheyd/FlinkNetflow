@@ -11,10 +11,14 @@ object FlowDecoder {
     val dPkts = extractUnsignedInt(recordBytes, 16)
     val dOctets = extractUnsignedInt(recordBytes, 20)
 
-    val srcport = ByteBuffer.wrap(Array[Byte](0, 0) ++ recordBytes.slice(32, 34)).getInt()
-    val dstport = ByteBuffer.wrap(Array[Byte](0, 0) ++ recordBytes.slice(34, 35)).getInt()
+    val srcport = extractUnsignedShort(recordBytes, 32)
+    val dstport = extractUnsignedShort(recordBytes, 34)
 
     new Flow(srcaddr, dstaddr, dPkts, dOctets, srcport, dstport)
+  }
+
+  def extractUnsignedShort(recordBytes: Array[Byte], offset: Int): Int = {
+    ByteBuffer.wrap(Array[Byte](0, 0) ++ recordBytes.slice(offset, offset + 2)).getInt()
   }
 
   def extractUnsignedInt(recordBytes: Array[Byte], offset: Int): Long = {
