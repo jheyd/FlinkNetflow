@@ -3,12 +3,11 @@ import java.nio.ByteBuffer
 
 case class NetflowRecord(bytes: Seq[Byte]){
   def toFlow: Flow = {
-    val recordBytes = bytes.toArray
+    val data = BinaryData(bytes)
 
-    val srcaddr = InetAddress.getByAddress(recordBytes.slice(0, 4)).getHostAddress
-    val dstaddr = InetAddress.getByAddress(recordBytes.slice(4, 8)).getHostAddress
+    val srcaddr = InetAddress.getByAddress(data.extractBytes(0, 4)).getHostAddress
+    val dstaddr = InetAddress.getByAddress(data.extractBytes(4, 4)).getHostAddress
 
-    val data = BinaryData(recordBytes)
     val dPkts = data.extractUnsignedInt(16)
     val dOctets = data.extractUnsignedInt(20)
 
