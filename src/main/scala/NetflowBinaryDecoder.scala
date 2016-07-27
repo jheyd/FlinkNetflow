@@ -1,5 +1,4 @@
 import java.io.{File, FileInputStream}
-import java.nio.ByteBuffer
 
 import scala.collection.mutable
 
@@ -8,6 +7,8 @@ object NetflowBinaryDecoder {
   val flowSize = 48
 
   def load(inputFile: File, maxChunks: Int): Seq[NetflowPacket] = load(inputFile, Some(maxChunks))
+
+  def load(inputFile: File): Seq[NetflowPacket] = load(inputFile, None)
 
   private def load(inputFile: File, maxChunks: Option[Int]): Seq[NetflowPacket] = {
     val in = new FileInputStream(inputFile)
@@ -30,7 +31,5 @@ object NetflowBinaryDecoder {
     }
     packets
   }
-
-  def load(inputFile: File): Seq[NetflowPacket] = load(inputFile, None)
 
 }
