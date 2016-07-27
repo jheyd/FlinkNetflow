@@ -12,7 +12,7 @@ object FlowDecoder {
     val dOctets = ByteBuffer.wrap(Array[Byte](0, 0, 0, 0) ++ recordBytes.slice(20, 24)).getLong
 
     val srcport = ByteBuffer.wrap(Array[Byte](0, 0) ++ recordBytes.slice(32, 34)).getInt()
-    val dstport = ByteBuffer.wrap(Array[Byte](0, 0) ++ recordBytes.slice(32, 34)).getInt()
+    val dstport = ByteBuffer.wrap(Array[Byte](0, 0) ++ recordBytes.slice(34, 35)).getInt()
 
     new Flow(srcaddr, dstaddr, dPkts, dOctets, srcport, dstport)
   }
