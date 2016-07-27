@@ -8,7 +8,8 @@ object FlowDecoder {
     val srcaddr = InetAddress.getByAddress(record.bytes.slice(0, 4).toArray).getHostAddress
     val dstaddr = InetAddress.getByAddress(record.bytes.slice(4, 8).toArray).getHostAddress
     val dPkts = ByteBuffer.wrap(record.bytes.slice(16, 20).toArray).getInt
-    new Flow(srcaddr, dstaddr, dPkts)
+    val dOctets = ByteBuffer.wrap(record.bytes.slice(20, 24).toArray).getInt
+    new Flow(srcaddr, dstaddr, dPkts, dOctets)
   }
 
 }
