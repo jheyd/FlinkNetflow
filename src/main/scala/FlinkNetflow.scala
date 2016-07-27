@@ -25,7 +25,7 @@ object FlinkNetflow {
     val packets = NetflowBinaryDecoder.load(inputFile, numberOfFlowsToRead)
     val result = env.fromCollection(packets)
       .flatMap(_.records)
-      .map(FlowDecoder.decode(_))
+      .map(_.toFlow)
       .map(_.dstIp)
       .map((_, 1))
       .groupBy(_._1)
