@@ -2,6 +2,8 @@ package de.tuberlin.inet.flink.netflow
 
 import java.net.InetAddress
 
+import de.tuberlin.inet.flink.netflow.flow.Flow
+
 case class NetflowRecord(data: BinaryData) {
   def toFlow: Flow = {
 
