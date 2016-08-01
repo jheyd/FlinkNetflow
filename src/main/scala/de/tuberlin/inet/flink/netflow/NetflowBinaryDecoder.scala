@@ -17,7 +17,7 @@ object NetflowBinaryDecoder {
     while (maxChunks.forall(packets.length < _) && in.read(headerBytes) == headerLength) {
       val header = new NetflowHeader(headerBytes.clone())
       val records = BinaryChunks(in, flowSize, header.packetLength)
-        .chunks.map(new NetflowRecord(_))
+        .map(new NetflowRecord(_))
 
       packets += new NetflowPacket(header, records)
     }

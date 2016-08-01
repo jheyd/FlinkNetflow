@@ -4,7 +4,9 @@ import java.io.InputStream
 
 import scala.collection.mutable
 
-case class BinaryChunks(chunks: Seq[BinaryData])
+case class BinaryChunks(chunks: Seq[BinaryData]){
+  def map[R](function: BinaryData => R): Seq[R] = chunks.map(function)
+}
 
 object BinaryChunks {
   def apply(in: InputStream, chunkSize: Int, count: Int): BinaryChunks = {
