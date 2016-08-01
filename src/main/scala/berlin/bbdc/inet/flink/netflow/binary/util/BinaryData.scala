@@ -1,4 +1,4 @@
-package de.tuberlin.inet.flink.netflow.binary.util
+package berlin.bbdc.inet.flink.netflow.binary.util
 
 import java.nio.ByteBuffer
 

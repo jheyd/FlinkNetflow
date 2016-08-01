@@ -1,12 +1,12 @@
-package de.tuberlin.inet.flink.netflow
+package berlin.bbdc.inet.flink.netflow
 
 import java.io.File
 
-import de.tuberlin.inet.flink.netflow.binary.{NetflowBinaryDecoder, NetflowHeader, NetflowPacket, NetflowRecord}
-import de.tuberlin.inet.flink.netflow.flow.Flow
+import berlin.bbdc.inet.flink.netflow.DataSetExtensions._
+import berlin.bbdc.inet.flink.netflow.binary.{NetflowBinaryDecoder, NetflowHeader, NetflowPacket, NetflowRecord}
+import berlin.bbdc.inet.flink.netflow.flow.Flow
 import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.scala.ExecutionEnvironment
-import de.tuberlin.inet.flink.netflow.DataSetExtensions._
 
 object FlinkNetflow {
 

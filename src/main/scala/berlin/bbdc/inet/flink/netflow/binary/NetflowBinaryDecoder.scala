@@ -1,8 +1,8 @@
-package de.tuberlin.inet.flink.netflow.binary
+package berlin.bbdc.inet.flink.netflow.binary
 
 import java.io.{File, FileInputStream}
 
-import de.tuberlin.inet.flink.netflow.binary.util.{BinaryChunks, BinaryData}
+import berlin.bbdc.inet.flink.netflow.binary.util.{BinaryChunks, BinaryData}
 
 import scala.collection.mutable
 

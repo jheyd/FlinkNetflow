@@ -1,9 +1,9 @@
-package de.tuberlin.inet.flink.netflow.binary
+package berlin.bbdc.inet.flink.netflow.binary
 
 import java.net.InetAddress
 
-import de.tuberlin.inet.flink.netflow.binary.util.BinaryData
-import de.tuberlin.inet.flink.netflow.flow.Flow
+import berlin.bbdc.inet.flink.netflow.binary.util.BinaryData
+import berlin.bbdc.inet.flink.netflow.flow.Flow
 
 case class NetflowRecord(data: BinaryData) {
   def toFlow: Flow = {

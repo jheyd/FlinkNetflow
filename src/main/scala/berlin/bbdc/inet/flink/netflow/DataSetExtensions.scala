@@ -1,4 +1,4 @@
-package de.tuberlin.inet.flink.netflow
+package berlin.bbdc.inet.flink.netflow
 
 import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.scala.DataSet
