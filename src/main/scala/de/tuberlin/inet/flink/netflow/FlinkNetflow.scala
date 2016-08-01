@@ -6,6 +6,7 @@ import de.tuberlin.inet.flink.netflow.binary.{NetflowBinaryDecoder, NetflowHeade
 import de.tuberlin.inet.flink.netflow.flow.Flow
 import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.scala.ExecutionEnvironment
+import de.tuberlin.inet.flink.netflow.DataSetExtensions._
 
 object FlinkNetflow {
 
@@ -31,13 +32,7 @@ object FlinkNetflow {
       .flatMap(_.records)
       .map(_.toFlow)
       .map(_.dstIp)
-      .map((_, 1))
-      .groupBy(_._1)
-      .reduce((left, right) => {
-        val (ip, count1) = left
-        val (_, count2) = right
-        (ip, count1 + count2)
-      })
+      .distinctWithCounts()
     result.print()
   }
 
