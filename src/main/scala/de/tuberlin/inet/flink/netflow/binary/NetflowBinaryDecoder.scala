@@ -2,6 +2,8 @@ package de.tuberlin.inet.flink.netflow.binary
 
 import java.io.{File, FileInputStream}
 
+import de.tuberlin.inet.flink.netflow.binary.util.BinaryChunks
+
 import scala.collection.mutable
 
 object NetflowBinaryDecoder {

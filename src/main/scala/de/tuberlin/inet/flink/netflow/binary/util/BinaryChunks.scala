@@ -1,4 +1,4 @@
-package de.tuberlin.inet.flink.netflow.binary
+package de.tuberlin.inet.flink.netflow.binary.util
 
 import java.io.InputStream
 
