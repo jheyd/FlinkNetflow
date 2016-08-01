@@ -2,7 +2,7 @@ package de.tuberlin.inet.flink.netflow.binary
 
 import java.io.{File, FileInputStream}
 
-import de.tuberlin.inet.flink.netflow.binary.util.BinaryChunks
+import de.tuberlin.inet.flink.netflow.binary.util.{BinaryChunks, BinaryData}
 
 import scala.collection.mutable
 
@@ -17,7 +17,7 @@ object NetflowBinaryDecoder {
     val packets = mutable.Buffer[NetflowPacket]()
     val headerBytes = new Array[Byte](headerLength)
     while (maxChunks.forall(packets.length < _) && in.read(headerBytes) == headerLength) {
-      val header = new NetflowHeader(headerBytes.clone())
+      val header = new NetflowHeader(BinaryData(headerBytes.clone()))
       val records = BinaryChunks(in, flowSize, header.packetLength)
         .map(new NetflowRecord(_))
 

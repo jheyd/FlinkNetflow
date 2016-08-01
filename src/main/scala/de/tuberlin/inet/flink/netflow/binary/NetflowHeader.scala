@@ -1,7 +1,7 @@
 package de.tuberlin.inet.flink.netflow.binary
 
-import java.nio.ByteBuffer
+import de.tuberlin.inet.flink.netflow.binary.util.BinaryData
 
-case class NetflowHeader(bytes: Seq[Byte]) {
-  def packetLength: Int = ByteBuffer.wrap(Array[Byte](0, 0) ++ bytes.slice(2, 4)).getInt
+case class NetflowHeader(data: BinaryData) {
+  def packetLength: Int = data.extractUnsignedShort(2)
 }
