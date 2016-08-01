@@ -2,6 +2,7 @@ package de.tuberlin.inet.flink.netflow
 
 import java.io.File
 
+import de.tuberlin.inet.flink.netflow.binary.{NetflowBinaryDecoder, NetflowHeader, NetflowPacket, NetflowRecord}
 import de.tuberlin.inet.flink.netflow.flow.Flow
 import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.scala.ExecutionEnvironment

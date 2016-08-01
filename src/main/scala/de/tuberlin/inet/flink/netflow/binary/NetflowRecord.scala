@@ -1,4 +1,4 @@
-package de.tuberlin.inet.flink.netflow
+package de.tuberlin.inet.flink.netflow.binary
 
 import java.net.InetAddress
 
