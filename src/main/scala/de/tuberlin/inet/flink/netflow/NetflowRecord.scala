@@ -1,3 +1,5 @@
+package de.tuberlin.inet.flink.netflow
+
 import java.net.InetAddress
 
 case class NetflowRecord(data: BinaryData) {

@@ -1,3 +1,5 @@
+package de.tuberlin.inet.flink.netflow
+
 import java.io.File
 
 import org.apache.flink.api.common.typeinfo.TypeInformation

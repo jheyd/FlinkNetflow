@@ -1,3 +1,5 @@
+package de.tuberlin.inet.flink.netflow
+
 import java.io.InputStream
 
 import scala.collection.mutable

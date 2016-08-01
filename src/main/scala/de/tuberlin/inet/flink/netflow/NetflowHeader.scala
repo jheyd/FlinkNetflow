@@ -1,3 +1,5 @@
+package de.tuberlin.inet.flink.netflow
+
 import java.nio.ByteBuffer
 
 case class NetflowHeader(bytes: Seq[Byte]) {
