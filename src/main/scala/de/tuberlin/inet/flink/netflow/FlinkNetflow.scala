@@ -33,7 +33,11 @@ object FlinkNetflow {
       .map(_.dstIp)
       .map((_, 1))
       .groupBy(_._1)
-      .reduce((left, right) => (left._1, left._2 + right._2))
+      .reduce((left, right) => {
+        val (ip, count1) = left
+        val (_, count2) = right
+        (ip, count1 + count2)
+      })
     result.print()
   }
 
