@@ -9,6 +9,8 @@ object FlinkNetflow {
   val env = ExecutionEnvironment.getExecutionEnvironment
 
   def main(args: Array[String]) {
+    println(Params.usage)
+
     val params = Params.fromArgs(args)
 
     val packets = NetflowBinaryDecoder.load(params.inputFile, params.flowCount)
