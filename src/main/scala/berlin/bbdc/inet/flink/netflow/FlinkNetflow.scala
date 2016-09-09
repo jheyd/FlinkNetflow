@@ -20,7 +20,7 @@ object FlinkNetflow {
       .distinctWithCounts()
     result.writeAsText(params.outputFile)
 
-    env.execute()
+    env.execute("Flink Netflow")
   }
 
 }
