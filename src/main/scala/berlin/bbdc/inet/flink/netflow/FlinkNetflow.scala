@@ -18,7 +18,9 @@ object FlinkNetflow {
       .map(_.toFlow)
       .map(_.dstIp)
       .distinctWithCounts()
-    result.print()
+    result.writeAsText(params.outputFile)
+
+    env.execute()
   }
 
 }

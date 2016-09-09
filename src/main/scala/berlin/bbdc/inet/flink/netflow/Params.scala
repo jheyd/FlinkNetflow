@@ -11,4 +11,5 @@ object Params {
 class Params(parameterTool: ParameterTool) {
   def inputFile: File = new File(parameterTool.getRequired("inputFile"))
   def flowCount: Int = parameterTool.getInt("flowCount")
+  def outputFile: String = parameterTool.getRequired("outputFile")
 }
